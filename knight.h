@@ -205,7 +205,8 @@ class adventure{
                 }
             }
             else if (eventsName == 11){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
                 int n1 = ((level + phoenixdown) % 5 + 1) * 3;
                 int s1 = 0;
                 int countNum = 0;
@@ -224,7 +225,11 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 12){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                if (HP > 1){
+                    HP=fibo(HP);
+                }
                 displayEach(eventsName, num);
             }
             else if (eventsName == 13){
@@ -346,6 +351,15 @@ class adventure{
                 }
             }
             return true;
+        }
+        int fibo(int n) {
+            int x1 = 0, x2 = 1, x3=0;
+            while (x3 < n) {
+                x1 = x2;
+                x2 = x3;
+                x3 = x1 + x2;
+            }
+            return x2;
         }
 
         // display
