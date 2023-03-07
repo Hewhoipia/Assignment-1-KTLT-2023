@@ -205,39 +205,39 @@ class adventure{
                 }
             }
             else if (eventsName == 11){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 12){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 13){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 15){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 16){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 17){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 18){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 19){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
             else if (eventsName == 99){
-                // tiny check
+                // tiny frog
                 displayEach(eventsName, num);
             }
 
