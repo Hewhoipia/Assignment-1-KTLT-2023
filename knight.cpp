@@ -13,12 +13,16 @@ void adventureToKoopa(string file_input, int & HP, int & level, int & remedy, in
     string events;
     string packages;
     readFile(file_input, HP, level, remedy, maidenkiss, phoenixdown, events, packages);
-
+    int eSize=0;
+    int* eventsArr = modifyEvents(events, eSize);
 
 
     //display
     cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
-    cout << events << endl << packages;
+    cout << events << endl << packages << endl;
+    for (int i=0; i<eSize; i++){
+        cout << eventsArr[i] << " ";
+    }
     //display (HP, level, remedy, maidenkiss, phoenixdown, rescue);
 }
 
@@ -39,12 +43,17 @@ void readFile(const string& filename, int& HP, int& level, int& remedy, int& mai
     }
 }
 
-void actionEvents(int & HP, int & level, int & remedy, int & maidenkiss, int & phoenixdown, int & rescue, string& eventsNum){
-    
-}
-
-string modifyEvents(string& events){
-
+int* modifyEvents(string& events, int& eSize){
+    int* arr = new int ();
+    stringstream s (events);
+    while (s >> arr[eSize]){
+        eSize++;
+    }
+    return &(*arr);
 }
 
 bool modifyPac(string& packages);
+
+void actionEvents(int & HP, int & level, int & remedy, int & maidenkiss, int & phoenixdown, int & rescue, string& eventsNum){
+    
+}
