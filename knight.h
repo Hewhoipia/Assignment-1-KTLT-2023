@@ -18,6 +18,8 @@ class adventure{
 
         // events
         size_t tiny=0;
+        size_t frog=0;
+        size_t levelFrog=1;
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
@@ -68,6 +70,7 @@ class adventure{
         void actionEvents(int eventsName, int num){
             if (eventsName == -1){
                 tinyCheck();
+                frogCheck();
                 return;
             }
             //events
@@ -79,6 +82,7 @@ class adventure{
             }
             else if (eventsName == 1){
                 tinyCheck();
+                frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo){
@@ -96,6 +100,7 @@ class adventure{
             }
             else if (eventsName == 2){
                 tinyCheck();
+                frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo){
@@ -113,6 +118,7 @@ class adventure{
             }
             else if (eventsName == 3){
                 tinyCheck();
+                frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo){
@@ -130,6 +136,7 @@ class adventure{
             }
             else if (eventsName == 4){
                 tinyCheck();
+                frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo){
@@ -147,6 +154,7 @@ class adventure{
             }
             else if (eventsName == 5){
                 tinyCheck();
+                frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo){
@@ -163,7 +171,7 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 6){
-                if(!tinyCheck()){
+                if(!tinyCheck() || !frogCheck()){
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo){
@@ -178,11 +186,23 @@ class adventure{
                 else{
                     displayEach(eventsName, num);
                 }
-                
             }
             else if (eventsName == 7){
-                // tiny check
-                displayEach(eventsName, num);
+                if(!tinyCheck() || !frogCheck()){
+                    int b = num+1 % 10;
+                    int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                    if (level > lvo){
+                        level=level+2;
+                        levelCheck();
+                    }
+                    else if (level < lvo){
+                        frog=4;
+                    }
+                    displayEach(eventsName, num);
+                }
+                else{
+                    displayEach(eventsName, num);
+                }
             }
             else if (eventsName == 11){
                 // tiny check
@@ -274,6 +294,27 @@ class adventure{
                 tiny=0;
                 HP*=5;
                 HPCheck();
+                return 0;
+            }
+            return 0;
+        }
+        bool frogCheck(){
+            if (frog>1){
+                if (maidenkiss>=1){
+                    maidenkiss--;
+                    frog=0;
+                    return 0;
+                }
+                if (frog==4){
+                    levelFrog=level;
+                    level=1;
+                }
+                frog--;
+                return 1;
+            }
+            else if (frog==1) {
+                frog=0;
+                level=levelFrog;
                 return 0;
             }
             return 0;
