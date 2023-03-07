@@ -167,7 +167,7 @@ class adventure{
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo){
-                        level+2;
+                        level=level+2;
                         levelCheck();
                     }
                     else if (level < lvo){
