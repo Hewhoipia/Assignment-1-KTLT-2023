@@ -206,7 +206,21 @@ class adventure{
             }
             else if (eventsName == 11){
                 // tiny frog
-                
+                int n1 = ((level + phoenixdown) % 5 + 1) * 3;
+                int s1 = 0;
+                int countNum = 0;
+                for (int i = 99; i >= 1; i -= 2) {
+                    if (countNum == n1) {
+                        break;
+                    }
+                    s1 += i;
+                    countNum++;
+                }
+                HP += (s1 % 100);
+                while (!prime(HP)) {
+                    HP++;
+                }
+                HPCheck();
                 displayEach(eventsName, num);
             }
             else if (eventsName == 12){
@@ -322,12 +336,12 @@ class adventure{
         }
 
         // Events Func
-        bool isPrime(int n) {
-            if (n < 2) {
+        bool prime(int hacPe) {
+            if (hacPe < 2) {
                 return false;
             }
-            for (int i = 2; i <= sqrt(n); i++) {
-                if (n % i == 0) {
+            for (int i = 2; i <= sqrt(hacPe); i++) {
+                if (hacPe % i == 0) {
                     return false;
                 }
             }
