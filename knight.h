@@ -427,6 +427,7 @@ class adventure{
                 x2 = x3;
                 x3 = x1 + x2;
             }
+            if (x2==n)return x1;
             return x2;
         }
         void mush1(int& maxi, int& mini){
