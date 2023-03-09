@@ -497,14 +497,54 @@ class adventure{
             }
         }
         void mush4(int*& newArr, int& max2_3x, int& max2_3i){
-            int max=newArr[0], maxi=0;
-            for (int i=0; i<3; i++){
-                if (max < newArr[i]){
-                    max=newArr[i];
-                    maxi=i;
+            if (n2<2){
+                max2_3x=-5;
+                max2_3i=-7;
+                return;
+            }
+            if (n2==2) {
+                int max1 = newArr[0], max2 = newArr[1], max2i = 1;
+                if (max1==max2){
+                    max2_3x=-5;
+                    max2_3i=-7;
+                    return;
+                }
+                if (max2 > max1) {
+                    swap(max1, max2);
+                    max2i = 0;
+                }
+                max2_3x=max2;
+                max2_3i=max2i;
+                return;
+            }
+            if (newArr[0]==newArr[1] && newArr[0]==newArr[2]){
+                max2_3x=-5;
+                max2_3i=-7;
+                return;
+            }
+            int max1 = newArr[0], max2 = newArr[1], max2i = 1;
+            if (max2 >= max1) {
+                swap(max1, max2);
+                max2i = 0;
+            }
+            if (newArr[2] > max1) {
+                if(max1!=max2){
+                    max2 = max1;
+                    max2i = (max1 == newArr[0] ? 1 : 0);
                 }
             }
-
+            else if (newArr[2] > max2) {
+                if(newArr[2]!=max1){
+                    max2 = newArr[2];
+                    max2i = (max1 == newArr[0] ? 1 : 0);
+                }
+            }
+            else if (max1==max2){
+                max2=newArr[2];
+                max2i=2;
+            }
+            max2_3x=max2;
+            max2_3i=max2i;
         }
 
         // display
