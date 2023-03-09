@@ -278,12 +278,27 @@ class adventure{
                         mush1(maxi, mini);
                         HP-=(maxi+mini);
                     }
+                    else if(event13Arr[i]=='2'){
+                        int mtx = n2Arr[0],mti = 0;
+                        mush2(mtx, mti);
+                        HP-=(mtx+mti);
+                    }
+                    else if(event13Arr[i]=='3'){
+                        int* newArr=new int [n2];
+                        for (int i=0; i<n2; i++){
+                            if(n2Arr[i] < 0) n2Arr[i]=-n2Arr[i];
+                            
+                        }
+                    }
+                    else if (event13Arr[i]='4'){
+
+                    }
                     if(!HPCheck()){
                         displayEach(eventsName, num);
                         return;
                     }
+                    displayEach(eventsName, num);
                 }
-                displayEach(eventsName, num);
             }
             else if (eventsName == 15){
                 // tiny frog
@@ -415,7 +430,7 @@ class adventure{
             return x2;
         }
         void mush1(int& maxi, int& mini){
-            int max=0, min=n2Arr[0];
+            int max=n2Arr[0], min=n2Arr[0];
             for (int i=0; i<n2; i++){
                 if (min > n2Arr[i]){
                     min=n2Arr[i];
@@ -425,6 +440,32 @@ class adventure{
                     max=n2Arr[i];
                     maxi=i;
                 }
+            }
+        }
+        void mush2(int& mtx, int& mti){
+            if (n2 < 2) {
+                mtx=-2;
+                mti=-3;
+                return;
+            }
+            for (int i = 0; i < n2; i++) {
+                if (n2Arr[i] > mtx) {
+                    mtx = n2Arr[i];
+                    mti = i;
+                }
+            }
+            int i = 0;
+            while (i < mti && n2Arr[i] < n2Arr[i + 1]) {
+                i++;
+            }
+            int j=mti;
+            while (j<n2-1 && n2Arr[j] > n2Arr[j+1]){
+                j++;
+            }
+            if (!(i == mti && j == n2-1)) {
+                mtx=-2;
+                mti=-3;
+                return;
             }
         }
 
