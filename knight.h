@@ -21,7 +21,7 @@ class adventure{
         size_t tiny=0; // event 6
         size_t frog=0; // event 7
         size_t levelFrog=1; // event 7
-        string event13Deal; // event 13
+        string event13Arr; // event 13
         int n2=0; int* n2Arr=nullptr; // event 13
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
@@ -272,9 +272,16 @@ class adventure{
             else if (eventsName == 13){
                 tinyCheck();
                 frogCheck();
-                for (int i=2; i<event13Deal.size(); i++){
-                    
-                    if(!HPCheck()) return;
+                for (int i=2; i<event13Arr.size(); i++){
+                    if(event13Arr[i]=='1'){
+                        int maxi=0,mini=0;
+                        mush1(maxi, mini);
+                        HP-=(maxi+mini);
+                    }
+                    if(!HPCheck()){
+                        displayEach(eventsName, num);
+                        return;
+                    }
                 }
                 displayEach(eventsName, num);
             }
@@ -313,7 +320,7 @@ class adventure{
                 return -1;
             }
             else if (eventsArr[num]/10 >= 13){
-                event13Deal=to_string(eventsArr[num]);
+                event13Arr=to_string(eventsArr[num]);
                 return 13;
             }
             else return eventsArr[num];
@@ -406,6 +413,19 @@ class adventure{
                 x3 = x1 + x2;
             }
             return x2;
+        }
+        void mush1(int& maxi, int& mini){
+            int max=0, min=n2Arr[0];
+            for (int i=0; i<n2; i++){
+                if (min > n2Arr[i]){
+                    min=n2Arr[i];
+                    mini=i;
+                }
+                if (max < n2Arr[i]){
+                    max=n2Arr[i];
+                    maxi=i;
+                }
+            }
         }
 
         // display
