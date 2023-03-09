@@ -13,18 +13,22 @@ class adventure{
         int maxHP, HP, level, remedy, maidenkiss, phoenixdown, rescue=-1;
         string events;
         string packages;
+        string mush, asclepius, merlin; // packages
         int eSize=0;
         int* eventsArr=nullptr;
 
         // events
-        size_t tiny=0;
-        size_t frog=0;
-        size_t levelFrog=1;
+        size_t tiny=0; // event 6
+        size_t frog=0; // event 7
+        size_t levelFrog=1; // event 7
+        string event13Deal; // event 13
+        int n2=0; int* n2Arr=nullptr; // event 13
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
             readFile();
             eventsArr = modifyEvents();
+            modifyPac();
             displayBegin(); // display status at begin
             actionEvents(keepTrackE(0), 0);
             
@@ -51,11 +55,11 @@ class adventure{
             }
             else {
                 cout << "Cannot read input file";
-                return;
+                exit(1);
             }
         }
 
-        // modify
+        // modify and handle file errors
         int* modifyEvents(){
             int* arr = new int ();
             stringstream s (events);
@@ -64,7 +68,41 @@ class adventure{
             }
             return &(*arr);
         }
-        bool modifyPac(string& packages);
+        void modifyPac(){
+            for (int i=0; i<packages.size(); i++){
+                if (packages[i]==',') packages[i]=' ';
+            }
+            stringstream ss(packages);
+            ss >> mush >>  asclepius >> merlin;
+            modifyMush();
+        }
+        void modifyMush(){
+            ifstream filePac(mush);
+            if (filePac.is_open()){
+                filePac >> n2;
+                string n2ArrStr;
+                getline(filePac, n2ArrStr);
+                getline(filePac, n2ArrStr);
+                n2Arr=new int[n2];
+                int j=0;
+                for (int i=0; i<n2ArrStr.size(); i++){
+                    if(n2ArrStr[i]==',')n2ArrStr[i]=' ';
+                }
+                stringstream ss(n2ArrStr);
+                while (ss >> n2Arr[j]){
+                    j++;
+                }
+                if(j != n2){
+                    cout << "n2 and size of array n2 is not equal (package " << mush <<")";
+                    exit(1);
+                }
+            }
+            else {
+                cout << "Cannot read input package file";
+                exit(1);
+            }
+        }
+        void handleFileError(); // example: when call event 13 but there are nothing in <file_mush_package>
 
         // action
         void actionEvents(int eventsName, int num){
@@ -74,7 +112,6 @@ class adventure{
                 return;
             }
             //events
-
             if (eventsName == 0){
                 rescue=1;
                 displayEach(eventsName, num);
@@ -233,7 +270,12 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 13){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                for (int i=2; i<event13Deal.size(); i++){
+                    
+                    if(!HPCheck()) return;
+                }
                 displayEach(eventsName, num);
             }
             else if (eventsName == 15){
@@ -269,6 +311,10 @@ class adventure{
             if (num >= eSize){
                 rescue = 1;
                 return -1;
+            }
+            else if (eventsArr[num]/10 >= 13){
+                event13Deal=to_string(eventsArr[num]);
+                return 13;
             }
             else return eventsArr[num];
         }
@@ -370,7 +416,12 @@ class adventure{
                 cout << eventsArr[i] << " ";
             }
             cout << endl;
-            cout << packages << endl;
+            cout << packages << ": " << endl;
+            cout << mush << ": " << endl << n2 << endl;
+            for (int i=0; i<n2; i++){
+                cout << n2Arr[i] << " ";
+            }
+            cout << endl;
         }
         void displayEach(int eventsName, int num){
             cout << "~" << num << " eventsName: " << eventsName << endl;
