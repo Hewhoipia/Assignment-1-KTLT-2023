@@ -287,7 +287,7 @@ class adventure{
                         int* newArr=new int [n2];
                         for (int i=0; i<n2; i++){
                             if(n2Arr[i] < 0) n2Arr[i]=-n2Arr[i];
-                            
+                            else newArr[i]=n2Arr[i];
                         }
                     }
                     else if (event13Arr[i]='4'){
