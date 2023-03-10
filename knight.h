@@ -315,12 +315,9 @@ class adventure{
                 }
             }
             else if (eventsName == 15){
-                if(remedy<99){
-                    remedy++;
-                }
                 tinyCheck();
                 frogCheck();
-
+                if(remedy<99) remedy++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 16){
