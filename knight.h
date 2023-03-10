@@ -315,15 +315,24 @@ class adventure{
                 }
             }
             else if (eventsName == 15){
-                // tiny frog
+                if(remedy<99){
+                    remedy++;
+                }
+                tinyCheck();
+                frogCheck();
+
                 displayEach(eventsName, num);
             }
             else if (eventsName == 16){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                if (maidenkiss<99) maidenkiss++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 17){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                if (phoenixdown < 99) phoenixdown++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 18){
