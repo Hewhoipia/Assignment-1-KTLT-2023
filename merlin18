@@ -3,31 +3,49 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
+    // Khai báo biến và đọc giá trị n9 từ người dùng
     size_t n9;
+    cout << "Nhap so mon do: ";
     cin >> n9;
-
+    
+    // Khởi tạo mảng n9Arr
     string* n9Arr = new string[n9];
-
-    for (size_t i = 0; i < n9; i++)
-    {
+    
+    // Đọc giá trị n9Arr từ người dùng
+    cout << "Nhap ten cac mon do: " << endl;
+    for (size_t i = 0; i < n9; i++) {
         cin >> n9Arr[i];
     }
-
+    
+    // Khai báo biến HP ban đầu của hiệp sĩ
     int HP = 100;
-
-    for (size_t i = 0; i < n9; i++)
-    {
-        if (n9Arr[i].find("Merlin") != string::npos || n9Arr[i].find("merlin") != string::npos)
-        {
-            HP += 3;
+    
+    // Kiểm tra mỗi chuỗi và tăng giá trị HP nếu thỏa mãn điều kiện
+    for (size_t i = 0; i < n9; i++) {
+        string item = n9Arr[i];
+        bool contains_merlin_name = false;
+        for (size_t j = 0; j < item.length(); j++) {
+            if (tolower(item[j]) == tolower('m') &&
+                tolower(item[j+1]) == tolower('e') &&
+                tolower(item[j+2]) == tolower('r') &&
+                tolower(item[j+3]) == tolower('l') &&
+                tolower(item[j+4]) == tolower('i') &&
+                tolower(item[j+5]) == tolower('n')) {
+                contains_merlin_name = true;
+                break;
+            }
+        }
+        if (contains_merlin_name) {
+            HP += 2;
         }
     }
-
-    cout << "HP sau khi tang: " << HP << endl;
-
+    
+    // In giá trị HP của hiệp sĩ
+    cout << "HP cua hiep si sau khi tang cac mon do la: " << HP << endl;
+    
+    // Giải phóng bộ nhớ
     delete[] n9Arr;
-
+    
     return 0;
 }
