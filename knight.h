@@ -305,7 +305,7 @@ class adventure{
                         HP-=(mtx+mti);
                     }
                     else if(event13Arr[i]=='3'){
-                        int* newArr=new int [n2];
+                        int* newArr = new int [n2];
                         for (int i=0; i<n2; i++){
                             if(n2Arr[i] < 0) newArr[i]=-n2Arr[i];
                             else newArr[i]=n2Arr[i];
@@ -314,9 +314,9 @@ class adventure{
                         int maxi2=0, mini2=0;
                         mush3(newArr,maxi2, mini2);
                         HP-=(maxi2+mini2);
-                        delete newArr;
+                        delete[] newArr;
                     }
-                    else if (event13Arr[i]='4'){
+                    else if (event13Arr[i]=='4'){
                         int* newArr=new int [n2];
                         for (int i=0; i<n2; i++){
                             if(n2Arr[i] < 0) newArr[i]=-n2Arr[i];
@@ -326,7 +326,7 @@ class adventure{
                         int max2_3x=0, max2_3i=0;
                         mush4(newArr, max2_3x, max2_3i);
                         HP-=(max2_3x+max2_3i);
-                        delete newArr;
+                        delete[] newArr;
                     }
                     if(!HPCheck()){
                         displayEach(eventsName, num);
@@ -583,7 +583,21 @@ class adventure{
                     continue;
                 }
                 else{
-                    
+                    bool hasMerlinItems = false;
+                    string lowerCaseItem = n9Arr[i];
+                    transform(lowerCaseItem.begin(), lowerCaseItem.end(), lowerCaseItem.begin(), ::tolower);
+                    string lowerCaseName = "merlin";
+                    transform(lowerCaseName.begin(), lowerCaseName.end(), lowerCaseName.begin(), ::tolower);
+                    int count = 0;
+                    for (char ch : lowerCaseName) {
+                        if (lowerCaseItem.find(ch) != string::npos) {
+                        count++;
+                        }
+                    }
+                    if (count == 6) {
+                        hasMerlinItems = true;
+                        HP += 2; // tăng HP của hiệp sĩ lên 2
+                    }
                 }
             }
         }
