@@ -584,7 +584,13 @@ class adventure{
                 else{
                     bool beMerlin = false;
                     string lowItem = n9Arr[i];
-                    transform(lowItem.begin(), lowItem.end(), lowItem.begin(), ::tolower);
+                    for (size_t j = 0; j < lowItem.size(); j++) {
+                        char c = lowItem[j];
+                        if (c >= 'A' && c <= 'Z'){
+                        lowItem[j] += 32;
+                        }
+                    }
+                    //transform(lowItem.begin(), lowItem.end(), lowItem.begin(), ::tolower);
                     int count = 0;
                     for (char ch : "merlin") {
                         if (lowItem.find(ch) != string::npos) {
