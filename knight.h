@@ -24,13 +24,20 @@ class adventure{
         string event13Arr; // event 13
         int n2=0; int* n2Arr=nullptr; // event 13
         size_t n9=0; string* n9Arr=nullptr; bool myMerlin=0;// event 18
+        bool beAr=0; // King Arthur!!!
+        bool beLa=0; // Lancelot
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
             readFile();
             eventsArr = modifyEvents();
             modifyPac();
+            arthurCheck();
+            lancelotCheck();
+
             displayBegin(); // display status at begin
+
+            //events
             actionEvents(keepTrackE(0), 0);
             
             //pass value to origin
@@ -134,6 +141,8 @@ class adventure{
             }
             //events
             if (eventsName == 0){
+                tinyCheck();
+                frogCheck();
                 rescue=1;
                 displayEach(eventsName, num);
                 return;
@@ -143,7 +152,7 @@ class adventure{
                 frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo){
+                if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
                 }
@@ -161,7 +170,7 @@ class adventure{
                 frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo){
+                if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
                 }
@@ -179,7 +188,7 @@ class adventure{
                 frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo){
+                if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
                 }
@@ -197,7 +206,7 @@ class adventure{
                 frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo){
+                if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
                 }
@@ -215,7 +224,7 @@ class adventure{
                 frogCheck();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo){
+                if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
                 }
@@ -232,7 +241,7 @@ class adventure{
                 if(!tinyCheck() || !frogCheck()){
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                    if (level > lvo){
+                    if (level > lvo || beAr || beLa){
                         level=level+2;
                         levelCheck();
                     }
@@ -249,7 +258,7 @@ class adventure{
                 if(!tinyCheck() || !frogCheck()){
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                    if (level > lvo){
+                    if (level > lvo || beAr || beLa){
                         level=level+2;
                         levelCheck();
                     }
@@ -356,7 +365,7 @@ class adventure{
             else if (eventsName == 18){
                 tinyCheck();
                 frogCheck();
-                findMerlin();
+                if(!myMerlin) findMerlin();
                 displayEach(eventsName, num);
             }
             else if (eventsName == 19){
@@ -364,8 +373,12 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 99){
-                // tiny frog
+
+                tinyCheck();
+                frogCheck();
+                rescue=1;
                 displayEach(eventsName, num);
+                return;
             }
 
             return actionEvents(keepTrackE(num+1),num+1);
@@ -576,6 +589,7 @@ class adventure{
             max2_3i=max2i;
         }
         void findMerlin(){
+            myMerlin=1;
             for (size_t i = 0; i < n9; i++){
                 if (n9Arr[i].find("Merlin") != string::npos || n9Arr[i].find("merlin") != string::npos){
                     HP += 3;
@@ -602,6 +616,16 @@ class adventure{
                         HPCheck();
                     }
                 }
+            }
+        }
+        void arthurCheck(){
+            if (HP==999){
+                beAr=1;
+            }
+        }
+        void lancelotCheck(){
+            if (prime(HP)){
+                beLa=1;
             }
         }
 
