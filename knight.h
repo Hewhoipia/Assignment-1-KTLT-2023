@@ -35,10 +35,9 @@ class adventure{
             modifyPac();
             arthurCheck();
             lancelotCheck();
+            //displayBegin(); // display status at begin
 
-            displayBegin(); // display status at begin
-
-            //events
+            // run events
             actionEvents(keepTrackE(0), 0);
             
             //pass value to origin
@@ -155,7 +154,6 @@ class adventure{
                 exit(1);
             }
         }
-        void handleFileError(); // example: when call event 13 but there are nothing in <file_mush_package>
 
         // action
         void actionEvents(int eventsName, int num){
@@ -169,7 +167,7 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 rescue=1;
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
                 return;
             }
             else if (eventsName == 1){
@@ -184,11 +182,11 @@ class adventure{
                 else if (level < lvo){
                     HP-=(1*lvo*10);
                     if (!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 2){
                 tinyCheck();
@@ -202,11 +200,11 @@ class adventure{
                 else if (level < lvo){
                     HP-=(1.5*lvo*10);
                     if (!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 3){
                 tinyCheck();
@@ -220,11 +218,11 @@ class adventure{
                 else if (level < lvo){
                     HP-=(4.5*lvo*10);
                     if (!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 4){
                 tinyCheck();
@@ -238,11 +236,11 @@ class adventure{
                 else if (level < lvo){
                     HP-=(7.5*lvo*10);
                     if (!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 5){
                 tinyCheck();
@@ -256,11 +254,11 @@ class adventure{
                 else if (level < lvo){
                     HP-=(9.5*lvo*10);
                     if (!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 6){
                 if(!tinyCheck() || !frogCheck()){
@@ -273,10 +271,10 @@ class adventure{
                     else if (level < lvo){
                         tiny=4;
                     }
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                 }
                 else{
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                 }
             }
             else if (eventsName == 7){
@@ -290,10 +288,10 @@ class adventure{
                     else if (level < lvo){
                         frog=4;
                     }
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                 }
                 else{
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                 }
             }
             else if (eventsName == 11){
@@ -315,7 +313,7 @@ class adventure{
                     HP++;
                 }
                 HPCheck();
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 12){
                 tinyCheck();
@@ -323,7 +321,7 @@ class adventure{
                 if (HP > 1){
                     HP=fibo(HP);
                 }
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 13){
                 tinyCheck();
@@ -364,53 +362,53 @@ class adventure{
                         delete[] newArr;
                     }
                     if(!HPCheck()){
-                        displayEach(eventsName, num);
+                        //displayEach(eventsName, num);
                         return;
                     }
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                 }
             }
             else if (eventsName == 15){
                 tinyCheck();
                 frogCheck();
                 if(remedy <= 99) remedy++;
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 16){
                 tinyCheck();
                 frogCheck();
                 if (maidenkiss <= 99) maidenkiss++;
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 17){
                 tinyCheck();
                 frogCheck();
                 if (phoenixdown <= 99) phoenixdown++;
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 18){
                 tinyCheck();
                 frogCheck();
                 if(!myMerlin) findMerlin();
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 19){
                 tinyCheck();
                 frogCheck();
                 if (!myDrug) getDrug();
-                displayEach(eventsName, num);
+                //displayEach(eventsName, num);
             }
             else if (eventsName == 99){
                 tinyCheck();
                 frogCheck();
                 if (((beAr || beLa) && level >=8) || level == 10){
                     rescue=1;
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                     return;
                 }
                 else {
                     rescue=0;
-                    displayEach(eventsName, num);
+                    //displayEach(eventsName, num);
                     return;
                 }
             }
@@ -696,7 +694,7 @@ class adventure{
         }
 
         // display
-        void displayBegin(){
+        /*void displayBegin(){
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
             
             for (int i=0; i<eSize; i++){
@@ -725,6 +723,6 @@ class adventure{
         void displayEach(int eventsName, int num){
             cout << "~" << num << " eventsName: " << eventsName << endl;
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
-        }
+        }*/
 };
 #endif // __KNIGHT_H__
