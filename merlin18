@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    size_t n9;
+    cin >> n9;
+
+    string* n9Arr = new string[n9];
+
+    for (size_t i = 0; i < n9; i++)
+    {
+        cin >> n9Arr[i];
+    }
+
+    int HP = 100;
+
+    for (size_t i = 0; i < n9; i++)
+    {
+        if (n9Arr[i].find("Merlin") != string::npos || n9Arr[i].find("merlin") != string::npos)
+        {
+            HP += 3;
+        }
+    }
+
+    cout << "HP sau khi tang: " << HP << endl;
+
+    delete[] n9Arr;
+
+    return 0;
+}
