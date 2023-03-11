@@ -373,12 +373,18 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 99){
-
                 tinyCheck();
                 frogCheck();
-                rescue=1;
-                displayEach(eventsName, num);
-                return;
+                if (((beAr || beLa) && level >=8) || level == 10){
+                    rescue=1;
+                    displayEach(eventsName, num);
+                    return;
+                }
+                else {
+                    rescue=0;
+                    displayEach(eventsName, num);
+                    return;
+                }
             }
 
             return actionEvents(keepTrackE(num+1),num+1);
