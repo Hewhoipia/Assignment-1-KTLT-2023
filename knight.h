@@ -580,23 +580,21 @@ class adventure{
                 if (n9Arr[i].find("Merlin") != string::npos || n9Arr[i].find("merlin") != string::npos){
                     HP += 3;
                     HPCheck();
-                    continue;
                 }
                 else{
-                    bool hasMerlinItems = false;
-                    string lowerCaseItem = n9Arr[i];
-                    transform(lowerCaseItem.begin(), lowerCaseItem.end(), lowerCaseItem.begin(), ::tolower);
-                    string lowerCaseName = "merlin";
-                    transform(lowerCaseName.begin(), lowerCaseName.end(), lowerCaseName.begin(), ::tolower);
+                    bool beMerlin = false;
+                    string lowItem = n9Arr[i];
+                    transform(lowItem.begin(), lowItem.end(), lowItem.begin(), ::tolower);
                     int count = 0;
-                    for (char ch : lowerCaseName) {
-                        if (lowerCaseItem.find(ch) != string::npos) {
-                        count++;
+                    for (char ch : "merlin") {
+                        if (lowItem.find(ch) != string::npos) {
+                            count++;
                         }
                     }
                     if (count == 6) {
-                        hasMerlinItems = true;
-                        HP += 2; // tăng HP của hiệp sĩ lên 2
+                        beMerlin = true;
+                        HP += 2;
+                        HPCheck();
                     }
                 }
             }

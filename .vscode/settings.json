@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "merlin18": "cpp"
+        "merlin18": "cpp",
+        "string": "cpp"
     }
 }
