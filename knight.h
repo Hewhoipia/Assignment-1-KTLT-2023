@@ -356,7 +356,7 @@ class adventure{
             else if (eventsName == 18){
                 tinyCheck();
                 frogCheck();
-                
+                findMerlin();
                 displayEach(eventsName, num);
             }
             else if (eventsName == 19){
@@ -574,6 +574,18 @@ class adventure{
             }
             max2_3x=max2;
             max2_3i=max2i;
+        }
+        void findMerlin(){
+            for (size_t i = 0; i < n9; i++){
+                if (n9Arr[i].find("Merlin") != string::npos || n9Arr[i].find("merlin") != string::npos){
+                    HP += 3;
+                    HPCheck();
+                    continue;
+                }
+                else{
+                    
+                }
+            }
         }
 
         // display
