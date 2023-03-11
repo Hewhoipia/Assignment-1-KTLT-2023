@@ -49,6 +49,12 @@ class adventure{
             _phoenixdown = phoenixdown;
             _rescue = rescue;
         }
+        ~adventure(){
+            delete[] eventsArr;
+            delete[] n2Arr;
+            delete[] asArr;
+            delete[] n9Arr;
+        }
     public:
         void readFile(){
             ifstream myfile(file_input);
@@ -304,6 +310,7 @@ class adventure{
                     countNum++;
                 }
                 HP += (s1 % 100);
+                if (prime(HP)) HP++;
                 while (!prime(HP)) {
                     HP++;
                 }
