@@ -23,6 +23,7 @@ class adventure{
         size_t levelFrog=1; // event 7
         string event13Arr; // event 13
         int n2=0; int* n2Arr=nullptr; // event 13
+        size_t n9=0; string* n9Arr=nullptr; bool myMerlin=0;// event 18
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
@@ -49,7 +50,6 @@ class adventure{
                 getline (myfile, events);
                 getline (myfile, events);
                 getline(myfile, packages);
-                getline(myfile, packages);
                 myfile.close();
                 return;
             }
@@ -75,14 +75,16 @@ class adventure{
             stringstream ss(packages);
             ss >> mush >>  asclepius >> merlin;
             modifyMush();
+            modifyAS();
+            modifyMerlin();
         }
         void modifyMush(){
-            ifstream filePac(mush);
-            if (filePac.is_open()){
-                filePac >> n2;
+            ifstream file(mush);
+            if (file.is_open()){
+                file >> n2;
                 string n2ArrStr;
-                getline(filePac, n2ArrStr);
-                getline(filePac, n2ArrStr);
+                getline(file, n2ArrStr);
+                getline(file, n2ArrStr);
                 n2Arr=new int[n2];
                 int j=0;
                 for (int i=0; i<n2ArrStr.size(); i++){
@@ -95,6 +97,25 @@ class adventure{
                 if(j != n2){
                     cout << "n2 and size of array n2 is not equal (package " << mush <<")";
                     exit(1);
+                }
+            }
+            else {
+                cout << "Cannot read input package file";
+                exit(1);
+            }
+        }
+        void modifyAS(){
+            //hmm
+        }
+        void modifyMerlin(){
+            ifstream file(merlin);
+            if (file.is_open()){
+                file >> n9;
+                n9Arr = new string [n9];
+                getline(file, n9Arr[0]);
+                getline (file, n9Arr[0]);
+                for (int i=1; i<n9; i++){
+                    getline(file, n9Arr[i]);
                 }
             }
             else {
@@ -333,7 +354,9 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 18){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                
                 displayEach(eventsName, num);
             }
             else if (eventsName == 19){
@@ -565,6 +588,11 @@ class adventure{
             cout << mush << ": " << endl << n2 << endl;
             for (int i=0; i<n2; i++){
                 cout << n2Arr[i] << " ";
+            }
+            cout << endl;
+            cout << merlin << ": " << endl << n9 << endl;
+            for (int i=0; i<n9; i++){
+                cout << n9Arr[i] << " ";
             }
             cout << endl;
         }
