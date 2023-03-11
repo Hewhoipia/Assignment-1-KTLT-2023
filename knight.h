@@ -590,7 +590,6 @@ class adventure{
                         lowItem[j] += 32;
                         }
                     }
-                    //transform(lowItem.begin(), lowItem.end(), lowItem.begin(), ::tolower);
                     int count = 0;
                     for (char ch : "merlin") {
                         if (lowItem.find(ch) != string::npos) {
