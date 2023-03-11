@@ -26,6 +26,7 @@ class adventure{
         size_t n9=0; string* n9Arr=nullptr; bool myMerlin=0;// event 18
         bool beAr=0; // King Arthur!!!
         bool beLa=0; // Lancelot
+        size_t r1=0, c1=0; int** asArr=nullptr; bool myDrug=0; // event 19
     public:
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
@@ -112,7 +113,25 @@ class adventure{
             }
         }
         void modifyAS(){
-            //hmm
+            ifstream file(asclepius);
+            if (file.is_open()){
+                string a;
+                file >> r1;
+                getline(file, a);
+                file >> c1;
+                asArr = new int *[r1];
+                for (int i=0; i<r1; i++){
+                    getline(file, a);
+                    asArr[i] = new int [c1];
+                    for (int j=0; j<c1; j++){
+                        file >> asArr[i][j];
+                    }
+                }
+            }
+            else {
+                cout << "Cannot read input package file";
+                exit(1);
+            }
         }
         void modifyMerlin(){
             ifstream file(merlin);
@@ -347,19 +366,19 @@ class adventure{
             else if (eventsName == 15){
                 tinyCheck();
                 frogCheck();
-                if(remedy<99) remedy++;
+                if(remedy <= 99) remedy++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 16){
                 tinyCheck();
                 frogCheck();
-                if (maidenkiss<99) maidenkiss++;
+                if (maidenkiss <= 99) maidenkiss++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 17){
                 tinyCheck();
                 frogCheck();
-                if (phoenixdown < 99) phoenixdown++;
+                if (phoenixdown <= 99) phoenixdown++;
                 displayEach(eventsName, num);
             }
             else if (eventsName == 18){
@@ -369,7 +388,9 @@ class adventure{
                 displayEach(eventsName, num);
             }
             else if (eventsName == 19){
-                // tiny frog
+                tinyCheck();
+                frogCheck();
+                if (!myDrug) getDrug();
                 displayEach(eventsName, num);
             }
             else if (eventsName == 99){
@@ -594,6 +615,38 @@ class adventure{
             max2_3x=max2;
             max2_3i=max2i;
         }
+        void getDrug(){
+            myDrug=1;
+            for (int i=0; i<r1; i++){
+                size_t count=0;
+                for (int j=0; j<c1; j++){
+                    if (count<3){
+                        if (asArr[i][j]==16){
+                            if (remedy <= 99){
+                                remedy++;
+                                count++;
+                            }
+                            else count++;
+                        }
+                        else if (asArr[i][j]==17){
+                            if (maidenkiss <= 99){
+                                maidenkiss++;
+                                count++;
+                            }
+                            else count++;
+                        }
+                        else if (asArr[i][j]==18){
+                            if (phoenixdown <= 99){
+                                phoenixdown++;
+                                count++;
+                            }
+                            else count++;
+                        }
+                    }
+                    else break;
+                }
+            }
+        }
         void findMerlin(){
             myMerlin=1;
             for (size_t i = 0; i < n9; i++){
@@ -649,6 +702,13 @@ class adventure{
                 cout << n2Arr[i] << " ";
             }
             cout << endl;
+            cout << asclepius << ": " << endl << r1 << endl << c1 << endl;
+            for (int i=0; i<r1; i++){
+                for (int j=0; j<c1; j++){
+                    cout << asArr[i][j] << " ";
+                }
+                cout << endl;
+            }
             cout << merlin << ": " << endl << n9 << endl;
             for (int i=0; i<n9; i++){
                 cout << n9Arr[i] << " ";
