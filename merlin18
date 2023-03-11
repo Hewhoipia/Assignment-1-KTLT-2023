@@ -1,37 +1,34 @@
-#include <iostream>
-#include <string>
+int HP = 100; // khởi tạo HP ban đầu là 100
+bool hasMerlinItems = false; // biến kiểm tra hiệp sĩ có đồ của Merlin hay không
 
-using namespace std;
+// kiểm tra từng món đồ trong túi
+for (size_t i = 0; i < n9; i++) {
+  // chuyển tất cả các kí tự của tên món đồ và tên của Merlin thành chữ thường
+  std::string lowerCaseItem = n9Arr[i];
+  std::transform(lowerCaseItem.begin(), lowerCaseItem.end(), lowerCaseItem.begin(), ::tolower);
+  std::string lowerCaseName = "merlin";
+  std::transform(lowerCaseName.begin(), lowerCaseName.end(), lowerCaseName.begin(), ::tolower);
 
-int main() {
-    size_t n9;
-    cout << "Nhap so luong mon do: ";
-    cin >> n9;
-
-    string* n9Arr = new string[n9];
-    cout << "Nhap ten cac mon do: " << endl;
-    for (size_t i = 0; i < n9; i++) {
-        cin >> n9Arr[i];
+  // kiểm tra xem tên món đồ có chứa đủ các kí tự trong tên của Merlin hay không
+  int count = 0;
+  for (char ch : lowerCaseName) {
+    if (lowerCaseItem.find(ch) != std::string::npos) {
+      count++;
     }
+  }
 
-    string merlinName = "Merlin";
-    int hp = 100;
-    for (size_t i = 0; i < n9; i++) {
-        string itemName = n9Arr[i];
-        int count = 0;
-        for (char c : merlinName) {
-            if (itemName.find(tolower(c)) != string::npos) {
-                count++;
-            }
-        }
-        if (count == 6) {
-            hp += 2;
-        }
-    }
-
-    cout << "HP sau khi su dung cac mon do la: " << hp << endl;
-
-    delete[] n9Arr;
-
-    return 0;
+  if (count == 6) {
+    hasMerlinItems = true;
+    HP += 2; // tăng HP của hiệp sĩ lên 2
+  }
 }
+
+// kiểm tra nếu hiệp sĩ có đồ của Merlin thì in ra "YES", ngược lại in ra "NO"
+if (hasMerlinItems) {
+  std::cout << "YES\n";
+} else {
+  std::cout << "NO\n";
+}
+
+// in ra giá trị của HP sau khi tăng HP từ các món đồ của Merlin
+std::cout << HP << "\n";
