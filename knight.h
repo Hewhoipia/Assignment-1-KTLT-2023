@@ -138,6 +138,7 @@ class adventure{
         // action
         void actionEvents(int eventsName, int num){
             if (eventsName == -1){
+                if (num==0) display();
                 return;
             }
             //events
