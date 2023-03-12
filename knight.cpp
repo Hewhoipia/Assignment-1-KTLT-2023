@@ -11,5 +11,4 @@ void display(int HP, int level, int remedy, int maidenkiss, int phoenixdown, int
 
 void adventureToKoopa(string file_input, int & HP, int & level, int & remedy, int & maidenkiss, int & phoenixdown, int & rescue) {
     adventure thong (file_input, HP, level, remedy, maidenkiss, phoenixdown, rescue);
-    display (HP, level, remedy, maidenkiss, phoenixdown, rescue);
 }
