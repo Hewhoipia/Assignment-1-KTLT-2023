@@ -49,10 +49,10 @@ class adventure{
             _rescue = rescue;
         }
         ~adventure(){
-            delete[] eventsArr;
-            delete[] n2Arr;
-            delete[] asArr;
-            delete[] n9Arr;
+            if(eventsArr!=nullptr){delete eventsArr; eventsArr=nullptr;}
+            if(n2Arr!=nullptr){delete [] n2Arr; n2Arr=nullptr;}
+            if(asArr!=nullptr){delete [] asArr; asArr=nullptr;}
+            if(n9Arr!=nullptr){delete [] n9Arr; n9Arr=nullptr;}
         }
     public:
         void readFile(){
@@ -342,19 +342,19 @@ class adventure{
                         int maxi2=0, mini2=0;
                         mush3(newArr,maxi2, mini2);
                         HP-=(maxi2+mini2);
-                        delete[] newArr;
+                        if(newArr!=nullptr)delete [] newArr;
                     }
                     else if (event13Arr[i]=='4'){
-                        int* newArr=new int [n2];
+                        int* newArrr=new int [n2];
                         for (int i=0; i<n2; i++){
-                            if(n2Arr[i] < 0) newArr[i]=-n2Arr[i];
-                            else newArr[i]=n2Arr[i];
-                            newArr[i]=(17*newArr[i]+9)%257;
+                            if(n2Arr[i] < 0) newArrr[i]=-n2Arr[i];
+                            else newArrr[i]=n2Arr[i];
+                            newArrr[i]=(17*newArrr[i]+9)%257;
                         }
                         int max2_3x=0, max2_3i=0;
-                        mush4(newArr, max2_3x, max2_3i);
+                        mush4(newArrr, max2_3x, max2_3i);
                         HP-=(max2_3x+max2_3i);
-                        delete[] newArr;
+                        if(newArrr!=nullptr)delete [] newArrr;
                     }
                     if(!HPCheck()){
                         displayIn();
@@ -560,7 +560,7 @@ class adventure{
                 return;
             }
         }
-        void mush3(int*& newArr,int& maxi2, int& mini2){
+        void mush3(int* newArr,int& maxi2, int& mini2){
             int max=newArr[0], min=newArr[0];
             for (int i=0; i<n2; i++){
                 if (min > newArr[i]){
@@ -573,7 +573,7 @@ class adventure{
                 }
             }
         }
-        void mush4(int*& newArr, int& max2_3x, int& max2_3i){
+        void mush4(int* newArr, int& max2_3x, int& max2_3i){
             if (n2<2){
                 max2_3x=-5;
                 max2_3i=-7;
