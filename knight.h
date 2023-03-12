@@ -79,10 +79,12 @@ class adventure{
         }
         void modifyPac(){
             for (int i=0; i<packages.size(); i++){
-                if (packages[i]==',') packages[i]=' ';
+                if (packages[i]==',') packages[i]='\n';
             }
             stringstream ss(packages);
-            ss >> mush >>  asclepius >> merlin;
+            getline(ss, mush);
+            getline(ss, asclepius);
+            getline(ss, merlin);
             modifyMush();
             modifyAS();
             modifyMerlin();
@@ -137,15 +139,17 @@ class adventure{
 
         // action
         void actionEvents(int eventsName, int num){
-            if(num>0)displayIn();
             if (eventsName == -1){
-                if(num==0)displayIn();
+                tinyCheck();
+                frogCheck();
+                displayIn();
                 return;
             }
             //events
             if (eventsName == 0){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 rescue=1;
                 displayIn();
                 //displayEach(eventsName, num);
@@ -154,6 +158,7 @@ class adventure{
             else if (eventsName == 1){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
@@ -173,6 +178,7 @@ class adventure{
             else if (eventsName == 2){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
@@ -192,6 +198,7 @@ class adventure{
             else if (eventsName == 3){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
@@ -211,6 +218,7 @@ class adventure{
             else if (eventsName == 4){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
@@ -230,6 +238,7 @@ class adventure{
             else if (eventsName == 5){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
@@ -247,7 +256,8 @@ class adventure{
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 6){
-                if(!tinyCheck() || !frogCheck()){
+                if(!tinyCheck() && !frogCheck()){
+                    if(num>0)displayIn();
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo || beAr || beLa){
@@ -259,9 +269,11 @@ class adventure{
                     }
                     //displayEach(eventsName, num);
                 }
+                else displayIn();
             }
             else if (eventsName == 7){
-                if(!tinyCheck() || !frogCheck()){
+                if(!tinyCheck() && !frogCheck()){
+                    if(num>0)displayIn();
                     int b = num+1 % 10;
                     int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo || beAr || beLa){
@@ -273,10 +285,12 @@ class adventure{
                     }
                     //displayEach(eventsName, num);
                 }
+                else displayIn();
             }
             else if (eventsName == 11){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 int n1 = ((level + phoenixdown) % 5 + 1) * 3;
                 int s1 = 0;
                 int countNum = 0;
@@ -298,6 +312,7 @@ class adventure{
             else if (eventsName == 12){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 if (HP > 1){
                     HP=fibo(HP);
                 }
@@ -306,6 +321,7 @@ class adventure{
             else if (eventsName == 13){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 for (int i=2; i<event13Arr.size(); i++){
                     if(event13Arr[i]=='1'){
                         int maxi=0,mini=0;
@@ -352,36 +368,42 @@ class adventure{
             else if (eventsName == 15){
                 tinyCheck();
                 frogCheck();
-                if(remedy <= 99) remedy++;
+                if(num>0)displayIn();
+                if(remedy < 99) remedy++;
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 16){
                 tinyCheck();
                 frogCheck();
-                if (maidenkiss <= 99) maidenkiss++;
+                if(num>0)displayIn();
+                if (maidenkiss < 99) maidenkiss++;
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 17){
                 tinyCheck();
                 frogCheck();
-                if (phoenixdown <= 99) phoenixdown++;
+                if(num>0)displayIn();
+                if (phoenixdown < 99) phoenixdown++;
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 18){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 if(!myMerlin) findMerlin();
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 19){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 if (!myDrug) getDrug();
                 //displayEach(eventsName, num);
             }
             else if (eventsName == 99){
                 tinyCheck();
                 frogCheck();
+                if(num>0)displayIn();
                 if (beAr || (beLa && level >=8) || level == 10){
                     rescue=1;
                     displayIn();
@@ -400,7 +422,7 @@ class adventure{
 
         // keep tracks
         int keepTrackE(int num){
-            if (num >= eSize){
+            if (num == eSize){
                 rescue = 1;
                 return -1;
             }
@@ -609,21 +631,21 @@ class adventure{
                 for (int j=0; j<c1; j++){
                     if (count<3){
                         if (asArr[i][j]==16){
-                            if (remedy <= 99){
+                            if (remedy < 99){
                                 remedy++;
                                 count++;
                             }
                             else count++;
                         }
                         else if (asArr[i][j]==17){
-                            if (maidenkiss <= 99){
+                            if (maidenkiss < 99){
                                 maidenkiss++;
                                 count++;
                             }
                             else count++;
                         }
                         else if (asArr[i][j]==18){
-                            if (phoenixdown <= 99){
+                            if (phoenixdown < 99){
                                 phoenixdown++;
                                 count++;
                             }
