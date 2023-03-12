@@ -9,11 +9,11 @@ void adventureToKoopa(string file_input, int & HP, int & level, int & remedy, in
 class adventure{
     private:
         // general
-        string file_input;
-        int maxHP, HP, level, remedy, maidenkiss, phoenixdown, rescue=-1;
-        string events;
-        string packages;
-        string mush, asclepius, merlin; // packages
+        string file_input="";
+        int maxHP=0, HP=0, level=0, remedy=0, maidenkiss=0, phoenixdown=0, rescue=-1;
+        string events="";
+        string packages="";
+        string mush="", asclepius="", merlin=""; // packages
         int eSize=0;
         int* eventsArr=nullptr;
 
@@ -21,7 +21,7 @@ class adventure{
         size_t tiny=0; // event 6
         size_t frog=0; // event 7
         size_t levelFrog=1; // event 7
-        string event13Arr; // event 13
+        string event13Arr=""; // event 13
         int n2=0; int* n2Arr=nullptr; // event 13
         size_t n9=0; string* n9Arr=nullptr; bool myMerlin=0;// event 18
         bool beAr=0; // King Arthur!!!
