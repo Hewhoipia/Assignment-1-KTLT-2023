@@ -401,7 +401,7 @@ class adventure{
             else if (eventsName == 99){
                 tinyCheck();
                 frogCheck();
-                if (((beAr || beLa) && level >=8) || level == 10){
+                if (beAr || (beLa && level >=8) || level == 10){
                     rescue=1;
                     //displayEach(eventsName, num);
                     return;
