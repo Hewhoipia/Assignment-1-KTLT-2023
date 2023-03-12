@@ -31,11 +31,11 @@ class adventure{
         adventure(string &_file_input, int& _HP, int& _level, int& _remedy, int& _maidenkiss, int& _phoenixdown, int& _rescue){
             this->file_input=_file_input;
             readFile();
-            eventsArr = modifyEvents();
+            modifyEvents();
             modifyPac();
             arthurCheck();
             lancelotCheck();
-            //displayBegin(); // display status at begin
+            displayBegin(); // display status at begin
 
             // run events
             actionEvents(keepTrackE(0), 0);
@@ -69,13 +69,12 @@ class adventure{
         }
 
         // modify and handle file errors
-        int* modifyEvents(){
-            int* arr = new int ();
+        void modifyEvents(){
+            eventsArr = new int ();
             stringstream s (events);
-            while (s >> arr[eSize]){
+            while (s >> eventsArr[eSize]){
                 eSize++;
             }
-            return &(*arr);
         }
         void modifyPac(){
             for (int i=0; i<packages.size(); i++){
@@ -241,7 +240,7 @@ class adventure{
                 if(num>0)displayIn();
                 int b = num+1 % 10;
                 int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
-                if (level > lvo || beAr || beLa){
+                if (level > lvo || beAr==1 || beLa==1){
                     level++;
                     levelCheck();
                 }
@@ -706,7 +705,7 @@ class adventure{
                 << ", phoenixdown=" << phoenixdown
                 << ", rescue=" << rescue << endl;
         }
-        /*void displayBegin(){
+        void displayBegin(){
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
             
             for (int i=0; i<eSize; i++){
@@ -735,6 +734,6 @@ class adventure{
         void displayEach(int eventsName, int num){
             cout << "~" << num << " eventsName: " << eventsName << endl;
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
-        }*/
+        }
 };
 #endif // __KNIGHT_H__
