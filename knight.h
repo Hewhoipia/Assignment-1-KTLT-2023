@@ -137,8 +137,9 @@ class adventure{
 
         // action
         void actionEvents(int eventsName, int num){
+            if(num>0)displayIn();
             if (eventsName == -1){
-                if (num==0) display();
+                if(num==0)displayIn();
                 return;
             }
             //events
@@ -146,7 +147,7 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 rescue=1;
-                display();
+                displayIn();
                 //displayEach(eventsName, num);
                 return;
             }
@@ -162,7 +163,7 @@ class adventure{
                 else if (level < lvo){
                     HP-=(1*lvo*10);
                     if (!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -181,7 +182,7 @@ class adventure{
                 else if (level < lvo){
                     HP-=(1.5*lvo*10);
                     if (!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -200,7 +201,7 @@ class adventure{
                 else if (level < lvo){
                     HP-=(4.5*lvo*10);
                     if (!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -219,7 +220,7 @@ class adventure{
                 else if (level < lvo){
                     HP-=(7.5*lvo*10);
                     if (!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -238,7 +239,7 @@ class adventure{
                 else if (level < lvo){
                     HP-=(9.5*lvo*10);
                     if (!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -341,7 +342,7 @@ class adventure{
                         delete[] newArr;
                     }
                     if(!HPCheck()){
-                        display();
+                        displayIn();
                         //displayEach(eventsName, num);
                         return;
                     }
@@ -383,18 +384,17 @@ class adventure{
                 frogCheck();
                 if (beAr || (beLa && level >=8) || level == 10){
                     rescue=1;
-                    display();
+                    displayIn();
                     //displayEach(eventsName, num);
                     return;
                 }
                 else {
                     rescue=0;
-                    display();
+                    displayIn();
                     //displayEach(eventsName, num);
                     return;
                 }
             }
-            display();
             return actionEvents(keepTrackE(num+1),num+1);
         }
 
@@ -676,7 +676,7 @@ class adventure{
         }
 
         // display
-        void display() {
+        void displayIn() {
             cout << "HP=" << HP
                 << ", level=" << level
                 << ", remedy=" << remedy
