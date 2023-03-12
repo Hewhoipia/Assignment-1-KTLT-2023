@@ -35,7 +35,7 @@ class adventure{
             modifyPac();
             arthurCheck();
             lancelotCheck();
-            displayBegin(); // display status at begin
+            //displayBegin(); // display status at begin
 
             // run events
             actionEvents(keepTrackE(0), 0);
@@ -158,8 +158,8 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 if(num>0)displayIn();
-                int b = num+1 % 10;
-                int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                int b = (num+1) % 10;
+                int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
@@ -178,8 +178,8 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 if(num>0)displayIn();
-                int b = num+1 % 10;
-                int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                int b = (num+1) % 10;
+                int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
@@ -198,8 +198,8 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 if(num>0)displayIn();
-                int b = num+1 % 10;
-                int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                int b = (num+1) % 10;
+                int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
@@ -218,8 +218,8 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 if(num>0)displayIn();
-                int b = num+1 % 10;
-                int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                int b = (num+1) % 10;
+                int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr || beLa){
                     level++;
                     levelCheck();
@@ -238,8 +238,8 @@ class adventure{
                 tinyCheck();
                 frogCheck();
                 if(num>0)displayIn();
-                int b = num+1 % 10;
-                int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                int b = (num+1) % 10;
+                int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                 if (level > lvo || beAr==1 || beLa==1){
                     level++;
                     levelCheck();
@@ -257,8 +257,8 @@ class adventure{
             else if (eventsName == 6){
                 if(!tinyCheck() && !frogCheck()){
                     if(num>0)displayIn();
-                    int b = num+1 % 10;
-                    int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                    int b = (num+1) % 10;
+                    int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo || beAr || beLa){
                         level=level+2;
                         levelCheck();
@@ -273,8 +273,8 @@ class adventure{
             else if (eventsName == 7){
                 if(!tinyCheck() && !frogCheck()){
                     if(num>0)displayIn();
-                    int b = num+1 % 10;
-                    int lvo = num+1 > 6 ? (b > 5 ? b : 5) : b;
+                    int b = (num+1) % 10;
+                    int lvo = (num+1) > 6 ? (b > 5 ? b : 5) : b;
                     if (level > lvo || beAr || beLa){
                         level=level+2;
                         levelCheck();
@@ -705,7 +705,7 @@ class adventure{
                 << ", phoenixdown=" << phoenixdown
                 << ", rescue=" << rescue << endl;
         }
-        void displayBegin(){
+        /*void displayBegin(){
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
             
             for (int i=0; i<eSize; i++){
@@ -734,6 +734,6 @@ class adventure{
         void displayEach(int eventsName, int num){
             cout << "~" << num << " eventsName: " << eventsName << endl;
             cout << HP << " " << level << " " << remedy << " " << maidenkiss << " " << phoenixdown << endl;
-        }
+        }*/
 };
 #endif // __KNIGHT_H__
