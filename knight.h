@@ -66,10 +66,6 @@ class adventure{
                 myfile.close();
                 return;
             }
-            else {
-                cout << "Cannot read input file";
-                exit(1);
-            }
         }
 
         // modify and handle file errors
@@ -107,14 +103,6 @@ class adventure{
                 while (ss >> n2Arr[j]){
                     j++;
                 }
-                if(j != n2){
-                    cout << "n2 and size of array n2 is not equal (package " << mush <<")";
-                    exit(1);
-                }
-            }
-            else {
-                cout << "Cannot read input package file";
-                exit(1);
             }
         }
         void modifyAS(){
@@ -133,10 +121,6 @@ class adventure{
                     }
                 }
             }
-            else {
-                cout << "Cannot read input package file";
-                exit(1);
-            }
         }
         void modifyMerlin(){
             ifstream file(merlin);
@@ -148,10 +132,6 @@ class adventure{
                 for (int i=1; i<n9; i++){
                     getline(file, n9Arr[i]);
                 }
-            }
-            else {
-                cout << "Cannot read input package file";
-                exit(1);
             }
         }
 
