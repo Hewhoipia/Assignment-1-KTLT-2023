@@ -138,8 +138,6 @@ class adventure{
         // action
         void actionEvents(int eventsName, int num){
             if (eventsName == -1){
-                tinyCheck();
-                frogCheck();
                 return;
             }
             //events
